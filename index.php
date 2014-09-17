@@ -21,14 +21,14 @@
                <label for="field6">
                     First Name
                </label>
-               <input name="first-name" id="field6" type="text">
+               <input name="first_name" id="field6" type="text">
           </div>
 
           <div id="field7-container" class="field">
                <label for="field7">
                     Last Name
                </label>
-               <input name="last-name" id="field7" type="text">
+               <input name="last_name" id="field7" type="text">
           </div>
 
           <div id="field8-container" class="field">
@@ -56,7 +56,7 @@
                <label for="field11">
                     Google+
                </label>
-               <input name="google-plus" id="field11" type="url">
+               <input name="google_plus" id="field11" type="url">
           </div>
 
           <div class="field" id="field13-container">
