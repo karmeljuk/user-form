@@ -18,11 +18,11 @@
     font-weight: normal;
 }
 
-.form-title {
+.title {
     padding: 12px;
 }
 
-.form-title h2{
+.title h2{
     margin-bottom:0;
 }
 
@@ -32,7 +32,7 @@
 }
 
 /** Field Styles **/
-.form .field, .form-title.field {
+.form .field, .title.field {
     padding-bottom: 12px;
     padding-top: 12px;
     position: relative;

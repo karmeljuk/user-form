@@ -2,7 +2,7 @@
 
 <div class="form-container">
 
-     <div class="form-title field">
+     <div class="title field">
           <h2>User Form</h2>
           <h3>Please fill out the form. Fields with * are required</h3>
      </div>

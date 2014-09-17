@@ -199,4 +199,5 @@ class ProcessForm
 
 }
 
-echo "All Good";
+// To redirect form on a particular page
+header("Location:result.php");
