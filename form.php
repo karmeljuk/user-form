@@ -24,8 +24,6 @@ class ProcessForm
 
 
 
-
-
     function __construct()
     {
         $this->error_messages = array(
@@ -39,8 +37,6 @@ class ProcessForm
         $this->fields = $_POST;
         $this->is_xhr = $this->xhr();
     }
-
-
 
 
 
@@ -102,8 +98,6 @@ class ProcessForm
 
 
 
-
-
     function process()
     {
          /**
@@ -139,6 +133,40 @@ class ProcessForm
          // mail($to, $subject, $msg, "From: $from\r\nReply-To: $from\r\nReturn-Path: $from\r\n");
 
 
+
+
+         // MySQL connect
+        $con=mysqli_connect("localhost","form","form","form");
+            echo "Connect to MySQL: ";
+
+        // Check connection
+        if (mysqli_connect_errno()) {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+
+
+        $login = mysqli_real_escape_string($con, $_POST['login']);
+        $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
+        $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
+        $email = mysqli_real_escape_string($con, $_POST['email']);
+        $password = mysqli_real_escape_string($con, $_POST['password']);
+        $website = mysqli_real_escape_string($con, $_POST['website']);
+        $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
+
+
+        $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus)
+        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus')";
+
+
+
+        if (!mysqli_query($con,$sql)) {
+          die('Error: ' . mysqli_error($con));
+        }
+        // echo "1 record added";
+
+        mysqli_close($con);
+
+
     }
 
 
@@ -154,14 +182,10 @@ class ProcessForm
 
 
 
-
-
     function xhr()
     {
         return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ? true : false;
     }
-
-
 
 
 
@@ -183,7 +207,6 @@ class ProcessForm
 
 
 
-
     function email($str)
     {
         return (!preg_match("/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD", $str)) ? false : true;
@@ -199,41 +222,6 @@ class ProcessForm
 
 }
 
-
-
-
-
-// MySQL connect
-$con=mysqli_connect("localhost","form","form","form");
-    echo "Connect to MySQL: ";
-
-// Check connection
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-
-$login = mysqli_real_escape_string($con, $_POST['login']);
-$first_name = mysqli_real_escape_string($con, $_POST['first_name']);
-$last_name = mysqli_real_escape_string($con, $_POST['last_name']);
-$email = mysqli_real_escape_string($con, $_POST['email']);
-$password = mysqli_real_escape_string($con, $_POST['password']);
-$website = mysqli_real_escape_string($con, $_POST['website']);
-$google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
-
-
-$sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus)
-VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus')";
-
-// $sql="INSERT INTO Persons (FirstName, LastName, Age)
-// VALUES ('$firstname', '$lastname', '$age')";
-
-if (!mysqli_query($con,$sql)) {
-  die('Error: ' . mysqli_error($con));
-}
-// echo "1 record added";
-
-mysqli_close($con);
 
 // To redirect form on a particular page
 header("Location:result.php");

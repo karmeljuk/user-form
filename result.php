@@ -26,21 +26,34 @@
 
   $result = mysqli_query($con,"SELECT * FROM data ORDER BY id DESC LIMIT 1");
 
-  $row = mysqli_fetch_array($result);
-    echo $row['login'];
-    echo "<br>";
-    echo $row['first_name'];
-    echo "<br>";
-    echo $row['last_name'];
-    echo "<br>";
-    echo $row['email'];
-    echo "<br>";
-    echo $row['password'];
-    echo "<br>";
-    echo $row['website'];
-    echo "<br>";
-    echo $row['google_plus'];
-    echo "<br>";
+  // $row = mysqli_fetch_array($result);
+  //   echo $row['login'];
+  //   echo "<br>";
+  //   echo $row['first_name'];
+  //   echo "<br>";
+  //   echo $row['last_name'];
+  //   echo "<br>";
+  //   echo $row['email'];
+  //   echo "<br>";
+  //   echo $row['password'];
+  //   echo "<br>";
+  //   echo $row['website'];
+  //   echo "<br>";
+  //   echo $row['google_plus'];
+  //   echo "<br>";
+
+//   while($row = mysqli_fetch_array($result)) {
+//   echo $row[''] . "<br>";
+// }
+
+
+  while ($row = mysqli_fetch_array($result)) {
+    echo '<ul>';
+    foreach($row as $field) {
+        echo '<li>' . htmlspecialchars($field) . '</li>';
+    }
+    echo '</ul>';
+}
 
   mysqli_close($con);
 
