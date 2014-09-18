@@ -152,15 +152,16 @@ class ProcessForm
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $website = mysqli_real_escape_string($con, $_POST['website']);
         $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
+        $information = mysqli_real_escape_string($con, $_POST['information']);
 
 
-        $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus)
-        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus')";
+        $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information)
+        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information')";
 
 
-
-        if (!mysqli_query($con,$sql)) {
-          die('Error: ' . mysqli_error($con));
+        if (!mysqli_query($con,$sql))
+        {
+            die('Error: ' . mysqli_error($con));
         }
         // echo "1 record added";
 

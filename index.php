@@ -74,7 +74,7 @@
                <label for="field12">
                     Additional Information
                </label>
-               <textarea rows="5" cols="70" name="information" id="field12"></textarea>
+               <textarea rows="5" class="field" name="information" id="field12"></textarea>
           </div>
 
           <div id="form-submit" class="field clearfix submit">
