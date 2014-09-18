@@ -135,6 +135,9 @@ class ProcessForm
 
 
 
+        $target = "images/photo/";
+        $target = $target . basename( $_FILES['photo']['name']);
+
          // MySQL connect
         $con=mysqli_connect("localhost","form","form","form");
             echo "Connect to MySQL: ";
@@ -154,9 +157,23 @@ class ProcessForm
         $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
         $information = mysqli_real_escape_string($con, $_POST['information']);
 
+        $photo = mysqli_real_escape_string($con, $_FILES['photo']['name']);
 
-        $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information)
-        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information')";
+
+        $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
+        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','photo')";
+
+        //Writes the photo to the server
+        if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
+        {
+        //Tells you if its all ok
+        echo "The file ". basename( $_FILES['uploadedfile']['name']). " has been uploaded, and your information has been added to the directory";
+        }
+        else {
+
+        //Gives and error if its not
+        echo "Sorry, there was a problem uploading your file.";
+        }
 
 
         if (!mysqli_query($con,$sql))
@@ -225,4 +242,4 @@ class ProcessForm
 
 
 // To redirect form on a particular page
-header("Location:result.php");
+// header("Location:result.php");
