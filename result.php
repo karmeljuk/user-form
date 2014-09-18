@@ -39,7 +39,7 @@
                 <label for="user_login">Login</label>
             </th>
             <td>
-                <input type="text" class="regular-text" disabled="disabled" value="<?=$row['login']; ?>" id="user_login" name="user_login">
+                <input type="text" class="regular-text" readonly="readonly" value="<?=$row['login']; ?>" id="user_login" name="user_login">
             </td>
         </tr>
 
@@ -48,7 +48,7 @@
                 <label for="first_name">First Name</label>
             </th>
             <td>
-                <input type="text" class="regular-text" disabled="disabled"  value="<?=$row['first_name']; ?>" id="first_name" name="first_name">
+                <input type="text" class="regular-text" readonly="readonly"  value="<?=$row['first_name']; ?>" id="first_name" name="first_name">
             </td>
         </tr>
 
@@ -57,7 +57,7 @@
                 <label for="last_name">Last Name</label>
             </th>
             <td>
-                <input type="text" class="regular-text" disabled="disabled"  value="<?=$row['last_name']; ?>" id="last_name" name="last_name">
+                <input type="text" class="regular-text" readonly="readonly"  value="<?=$row['last_name']; ?>" id="last_name" name="last_name">
             </td>
         </tr>
     </tbody>
@@ -70,7 +70,7 @@
                 <label for="email">E-mail</label>
             </th>
             <td>
-                <input type="text" class="regular-text ltr" disabled="disabled"  value="<?=$row['email']; ?>" id="email" name="email">
+                <input type="text" class="regular-text ltr" readonly="readonly"  value="<?=$row['email']; ?>" id="email" name="email">
             </td>
         </tr>
 
@@ -79,7 +79,7 @@
                 <label for="url">Website</label>
             </th>
             <td>
-                <input type="text" class="regular-text code" disabled="disabled"  value="<?=$row['website']; ?>" id="url" name="url">
+                <input type="text" class="regular-text code" readonly="readonly"  value="<?=$row['website']; ?>" id="url" name="url">
             </td>
         </tr>
         <tr>
@@ -87,7 +87,7 @@
                 <label for="jabber">Google+</label>
             </th>
             <td>
-                <input type="text" class="regular-text" disabled="disabled"  value="<?=$row['google_plus']; ?>" id="google_plus" name="google_plus">
+                <input type="text" class="regular-text" readonly="readonly"  value="<?=$row['google_plus']; ?>" id="google_plus" name="google_plus">
             </td>
         </tr>
     </tbody>
@@ -97,10 +97,10 @@
     <tbody>
         <tr>
             <th>
-                <label for="description">Biographical Info</label>
+                <label for="description">Information</label>
             </th>
             <td>
-                <textarea cols="30" rows="5" id="description" disabled="disabled"  name="description"><?=$row['information']; ?></textarea>
+                <textarea rows="5" id="description" readonly="readonly"  name="description"><?=$row['information']; ?></textarea>
             </td>
         </tr>
 
@@ -109,7 +109,7 @@
                 <label for="pass1">Password</label>
             </th>
             <td>
-                <input type="password" autocomplete="off" disabled="disabled"  value="<?=$row['password']; ?>" size="16" class="regular-text" id="password" name="password">
+                <input type="password" autocomplete="off" readonly="readonly"  value="<?=$row['password']; ?>" class="regular-text" id="password" name="password">
             </td>
         </tr>
     </tbody>
