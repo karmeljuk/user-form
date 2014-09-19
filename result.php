@@ -104,12 +104,21 @@
             </td>
         </tr>
 
-        <tr id="password">
+        <tr>
             <th>
-                <label for="pass1">Password</label>
+                <label for="password">Password</label>
             </th>
             <td>
                 <input type="password" autocomplete="off" readonly="readonly"  value="<?=$row['password']; ?>" class="regular-text" id="password" name="password">
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <label for="photo">Photo</label>
+            </th>
+            <td>
+                <img src="images/photo/<?=$row['photo'] ?>">
             </td>
         </tr>
     </tbody>

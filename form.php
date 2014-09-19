@@ -148,16 +148,19 @@ class ProcessForm
         }
 
 
+
+
         $login = mysqli_real_escape_string($con, $_POST['login']);
         $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
         $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
         $email = mysqli_real_escape_string($con, $_POST['email']);
-        $password = mysqli_real_escape_string($con, $_POST['password']);
+        $password = md5(mysqli_real_escape_string($con, $_POST['password']));
         $website = mysqli_real_escape_string($con, $_POST['website']);
         $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
         $information = mysqli_real_escape_string($con, $_POST['information']);
 
         $photo = mysqli_real_escape_string($con, $_FILES['photo']['name']);
+
 
 
         $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
@@ -242,4 +245,4 @@ class ProcessForm
 
 
 // To redirect form on a particular page
-// header("Location:result.php");
+header("Location:result.php");

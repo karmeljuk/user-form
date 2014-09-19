@@ -64,9 +64,10 @@
                     Photo
                </label>
                <div class="uploader" id="uploader">
-                 <input type="file" id="field13" name="photo">
-                 <span class="filename"></span>
-                 <span class="action"></span>
+                 <input type="file" accept="image/*" id="field13" name="photo">
+                 <input type="hidden" name="max_file_size" value="100000" />
+                 <!-- <span class="filename"></span>
+                 <span class="action"></span> -->
                </div>
           </div>
 
