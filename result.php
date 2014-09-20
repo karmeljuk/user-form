@@ -1,16 +1,11 @@
-<?php include 'header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <div class="form-container">
 
 
   <?php
 
-  $con=mysqli_connect("localhost","form","form","form");
-  // Check connection
-  if (mysqli_connect_errno())
-  {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+  include "includes/connect.php";
 
   // $query = "SELECT login,first_name FROM data";
 
@@ -109,7 +104,7 @@
                 <label for="password">Password</label>
             </th>
             <td>
-                <input type="password" autocomplete="off" readonly="readonly"  value="<?=$row['password']; ?>" class="regular-text" id="password" name="password">
+                <input type="password" autocomplete="off" readonly="readonly"  value="******" class="regular-text" id="password" name="password">
             </td>
         </tr>
 
@@ -165,4 +160,4 @@
 </div>
 
 
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

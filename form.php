@@ -138,17 +138,7 @@ class ProcessForm
         $target = "images/photo/";
         $target = $target . basename( $_FILES['photo']['name']);
 
-         // MySQL connect
-        $con=mysqli_connect("localhost","form","form","form");
-            echo "Connect to MySQL: ";
-
-        // Check connection
-        if (mysqli_connect_errno()) {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-
-
-
+        include "includes/connect.php";
 
         $login = mysqli_real_escape_string($con, $_POST['login']);
         $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
