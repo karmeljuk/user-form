@@ -65,10 +65,6 @@ class ProcessForm
 
                         $this->fields[$field] = $this->clean($this->fields[$field]);
 
-                        //if the field is a checkbox group create string
-                        // if (is_array($this->fields[$field]))
-                        //     $this->fields[$field] = implode(', ', $this->fields[$field]);
-
                         // Call the function that corresponds to the rule
                         if (!empty($rule))
                             $result = $this->$rule($this->fields[$field], $param);
@@ -96,107 +92,6 @@ class ProcessForm
         }
     }
 
-
-
-    function process()
-    {
-         /**
-         * SUCCESS!!
-         * There were no errors in the form. Insert your processing logic here (i.e. send an email, save to a
-         * database etc.
-         *
-         * All of the submitted fields are available in the $this->fields variable.
-         *
-         * Example code to mail the results of the form:
-         *
-         * IMPORTANT - PLEASE READ:
-         * 1. YOU MUST UNCOMMENT THE CODE FOR IT TO WORK.
-         *    - This means removing the '//' in front of each line.
-         *    - If you do not know what php comments are see here: http://php.net/manual/en/language.basic-syntax.comments.php
-         *
-         * 2. YOU CAN ENTER ANY EMAIL ADDRESS IN THE $from VARIABLE.
-         *    - This is the address that will show in the From column in your mail application.
-         *    - If your form contains an email field, and you want to use that value as the $from variable, you can set $from = $this->fields['name of your email field'];
-         *    - As stated in the description on codecanyon, this code does not mail attachments. Google 'php html email attachments' for information on how to do this
-         */
-
-
-
-         // $msg = "Form Contents: \n\n";
-         // foreach($this->fields as $key => $field)
-         //       $msg .= "$key :  $field \n";
-
-         // $to = 'karmeljuk@gmail.com';
-         // $subject = 'Form Submission';
-         // $from = 'karmeljuk@gmail.com';
-
-         // mail($to, $subject, $msg, "From: $from\r\nReply-To: $from\r\nReturn-Path: $from\r\n");
-
-
-
-
-        $target = "images/photo/";
-        $target = $target . basename( $_FILES['photo']['name']);
-
-        $login=$_POST['login'];
-        $first_name=$_POST['first_name'];
-        $last_name=$_POST['last_name'];
-        $email=$_POST['email'];
-        $password=$_POST['password'];
-        $website=$_POST['website'];
-        $google_plus=$_POST['google_plus'];
-        $information=$_POST['information'];
-        $photo=($_FILES['photo']['name']);
-
-        // Connects to Database
-        include "includes/connect.php";
-
-        //Writes the information to the database
-        mysql_query("INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
-        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','$photo')") ;
-
-        //Writes the photo to the server
-        if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
-        {
-
-        //Tells you if its all ok
-        echo "The file ". basename( $_FILES['photo']['name']). " has been uploaded, and your information has been added to the directory";
-        }
-        else {
-
-        //Gives and error if its not
-        echo "Sorry, there was a problem uploading your file.";
-        }
-
-        // include "includes/connect.php";
-
-        // $login = mysqli_real_escape_string($con, $_POST['login']);
-        // $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
-        // $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
-        // $email = mysqli_real_escape_string($con, $_POST['email']);
-        // $password = md5(mysqli_real_escape_string($con, $_POST['password']));
-        // $website = mysqli_real_escape_string($con, $_POST['website']);
-        // $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
-        // $information = mysqli_real_escape_string($con, $_POST['information']);
-
-        // $photo = mysqli_real_escape_string($con, $_FILES['photo']['name']);
-
-
-
-        // $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
-        // VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','photo')";
-
-
-        // if (!mysqli_query($con,$sql))
-        // {
-        //     die('Error: ' . mysqli_error($con));
-        // }
-        // // echo "1 record added";
-
-        // mysqli_close($con);
-
-
-    }
 
 
 
@@ -249,8 +144,49 @@ class ProcessForm
         return $str;
     }
 
+
+    function process()
+    {
+        $target = "images/photo/";
+        $target = $target . basename( $_FILES['photo']['name']);
+
+        $login=$_POST['login'];
+        $first_name=$_POST['first_name'];
+        $last_name=$_POST['last_name'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $website=$_POST['website'];
+        $google_plus=$_POST['google_plus'];
+        $information=$_POST['information'];
+        $photo=($_FILES['photo']['name']);
+
+        // Connects to Database
+        include "includes/connect.php";
+
+        //Writes the information to the database
+        mysql_query("INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
+        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','$photo')") ;
+
+        //Writes the photo to the server
+        if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
+        {
+
+            //Tells you if its all ok
+            echo "The file ". basename( $_FILES['photo']['name']). " has been uploaded, and your information has been added to the directory";
+
+            // To redirect form on a particular page
+            header("Location:result.php");
+        }
+
+        else {
+
+            //Gives and error if its not
+            echo "Sorry, there was a problem uploading your file.";
+        }
+
+    }
+
 }
 
 
-// To redirect form on a particular page
-header("Location:result.php");
+
