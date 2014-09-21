@@ -138,29 +138,29 @@ class ProcessForm
         $target = "images/photo/";
         $target = $target . basename( $_FILES['photo']['name']);
 
+        $login=$_POST['login'];
+        $first_name=$_POST['first_name'];
+        $last_name=$_POST['last_name'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $website=$_POST['website'];
+        $google_plus=$_POST['google_plus'];
+        $information=$_POST['information'];
+        $photo=($_FILES['photo']['name']);
+
+        // Connects to Database
         include "includes/connect.php";
 
-        $login = mysqli_real_escape_string($con, $_POST['login']);
-        $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
-        $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
-        $email = mysqli_real_escape_string($con, $_POST['email']);
-        $password = md5(mysqli_real_escape_string($con, $_POST['password']));
-        $website = mysqli_real_escape_string($con, $_POST['website']);
-        $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
-        $information = mysqli_real_escape_string($con, $_POST['information']);
-
-        $photo = mysqli_real_escape_string($con, $_FILES['photo']['name']);
-
-
-
-        $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
-        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','photo')";
+        //Writes the information to the database
+        mysql_query("INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
+        VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','$photo')") ;
 
         //Writes the photo to the server
         if(move_uploaded_file($_FILES['photo']['tmp_name'], $target))
         {
+
         //Tells you if its all ok
-        echo "The file ". basename( $_FILES['uploadedfile']['name']). " has been uploaded, and your information has been added to the directory";
+        echo "The file ". basename( $_FILES['photo']['name']). " has been uploaded, and your information has been added to the directory";
         }
         else {
 
@@ -168,14 +168,32 @@ class ProcessForm
         echo "Sorry, there was a problem uploading your file.";
         }
 
+        // include "includes/connect.php";
 
-        if (!mysqli_query($con,$sql))
-        {
-            die('Error: ' . mysqli_error($con));
-        }
-        // echo "1 record added";
+        // $login = mysqli_real_escape_string($con, $_POST['login']);
+        // $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
+        // $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
+        // $email = mysqli_real_escape_string($con, $_POST['email']);
+        // $password = md5(mysqli_real_escape_string($con, $_POST['password']));
+        // $website = mysqli_real_escape_string($con, $_POST['website']);
+        // $google_plus = mysqli_real_escape_string($con, $_POST['google_plus']);
+        // $information = mysqli_real_escape_string($con, $_POST['information']);
 
-        mysqli_close($con);
+        // $photo = mysqli_real_escape_string($con, $_FILES['photo']['name']);
+
+
+
+        // $sql="INSERT INTO data (login, first_name, last_name, email, password, website, google_plus, information, photo)
+        // VALUES ('$login','$first_name','$last_name','$email','$password','$website','$google_plus','$information','photo')";
+
+
+        // if (!mysqli_query($con,$sql))
+        // {
+        //     die('Error: ' . mysqli_error($con));
+        // }
+        // // echo "1 record added";
+
+        // mysqli_close($con);
 
 
     }

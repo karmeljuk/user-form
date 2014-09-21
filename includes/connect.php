@@ -1,10 +1,7 @@
 <?php
 
-  // MySQL connect
-  $con=mysqli_connect("localhost","form","form","form");
+// MySQL connect
+mysql_connect("localhost", "form", "form") or die(mysql_error()) ;
 
-
-  // Check connection
-  if (mysqli_connect_errno()) {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+// Check connection
+mysql_select_db("form") or die(mysql_error()) ;

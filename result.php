@@ -5,24 +5,29 @@
 
   <?php
 
+  // Connects to Database
   include "includes/connect.php";
 
-  // $query = "SELECT login,first_name FROM data";
-
-  // $result = MYSQL_QUERY($query);
-  // $data = MYSQL_RESULT($result,0,"login");
-  // $type = MYSQL_RESULT($result,0,"first_name");
-  // Header( "Content-type: $type");
-  // print $data;
-
-  $result = mysqli_query($con,"SELECT * FROM data ORDER BY id DESC LIMIT 1");
+  // $result = mysqli_query($con,"SELECT * FROM data ORDER BY id DESC LIMIT 1");
 
 
-  $row = mysqli_fetch_array($result);
+  // $row = mysqli_fetch_array($result);
 
-  ?>
 
-  <div class="title field">
+
+ //Retrieves data from MySQL
+ $data = mysql_query("SELECT * FROM data ORDER BY id DESC LIMIT 1") or die(mysql_error());
+
+//Puts it into an array
+
+  $info = mysql_fetch_array( $data );
+ //Outputs the image and other data
+
+  // echo "<img src=images/".$info['photo'] ."> <br>";
+
+?>
+
+<div class="title field">
       <h2>Personal Information</h2>
   </div>
   <hr>
@@ -34,7 +39,7 @@
                 <label for="user_login">Login</label>
             </th>
             <td>
-                <input type="text" class="regular-text" readonly="readonly" value="<?=$row['login']; ?>" id="user_login" name="user_login">
+                <input type="text" class="regular-text" readonly="readonly" value="<?=$info['login']; ?>" id="user_login" name="user_login">
             </td>
         </tr>
 
@@ -43,7 +48,7 @@
                 <label for="first_name">First Name</label>
             </th>
             <td>
-                <input type="text" class="regular-text" readonly="readonly"  value="<?=$row['first_name']; ?>" id="first_name" name="first_name">
+                <input type="text" class="regular-text" readonly="readonly"  value="<?=$info['first_name']; ?>" id="first_name" name="first_name">
             </td>
         </tr>
 
@@ -52,7 +57,7 @@
                 <label for="last_name">Last Name</label>
             </th>
             <td>
-                <input type="text" class="regular-text" readonly="readonly"  value="<?=$row['last_name']; ?>" id="last_name" name="last_name">
+                <input type="text" class="regular-text" readonly="readonly"  value="<?=$info['last_name']; ?>" id="last_name" name="last_name">
             </td>
         </tr>
     </tbody>
@@ -65,7 +70,7 @@
                 <label for="email">E-mail</label>
             </th>
             <td>
-                <input type="text" class="regular-text ltr" readonly="readonly"  value="<?=$row['email']; ?>" id="email" name="email">
+                <input type="text" class="regular-text ltr" readonly="readonly"  value="<?=$info['email']; ?>" id="email" name="email">
             </td>
         </tr>
 
@@ -74,7 +79,7 @@
                 <label for="url">Website</label>
             </th>
             <td>
-                <input type="text" class="regular-text code" readonly="readonly"  value="<?=$row['website']; ?>" id="url" name="url">
+                <input type="text" class="regular-text code" readonly="readonly"  value="<?=$info['website']; ?>" id="url" name="url">
             </td>
         </tr>
         <tr>
@@ -82,7 +87,7 @@
                 <label for="jabber">Google+</label>
             </th>
             <td>
-                <input type="text" class="regular-text" readonly="readonly"  value="<?=$row['google_plus']; ?>" id="google_plus" name="google_plus">
+                <input type="text" class="regular-text" readonly="readonly"  value="<?=$info['google_plus']; ?>" id="google_plus" name="google_plus">
             </td>
         </tr>
     </tbody>
@@ -95,7 +100,7 @@
                 <label for="description">Information</label>
             </th>
             <td>
-                <textarea rows="5" id="description" readonly="readonly"  name="description"><?=$row['information']; ?></textarea>
+                <textarea rows="5" id="description" readonly="readonly"  name="description"><?=$info['information']; ?></textarea>
             </td>
         </tr>
 
@@ -113,51 +118,18 @@
                 <label for="photo">Photo</label>
             </th>
             <td>
-                <img src="images/photo/<?=$row['photo'] ?>">
+                <p>
+                  <img width="220" src="images/photo/<?=$info['photo'] ?>">
+                </p>
             </td>
         </tr>
     </tbody>
 </table>
+</div>
 
 <?php
 
+  mysql_close();
+  include 'includes/footer.php';
 
-      // echo $row['login'];
-      // echo "<br>";
-      // echo $row['first_name'];
-      // echo "<br>";
-      // echo $row['last_name'];
-      // echo "<br>";
-      // echo $row['email'];
-      // echo "<br>";
-      // echo $row['password'];
-      // echo "<br>";
-      // echo $row['website'];
-      // echo "<br>";
-      // echo $row['google_plus'];
-      // echo "<br>";
-
-
-
-  // while($row = mysqli_fetch_array($result))
-  // {
-  //     echo $row[''] . "<br>";
-  // }
-
-
-  // while ($row = mysqli_fetch_array($result)) {
-  //   echo '<ul>';
-  //   foreach($row as $field) {
-  //       echo '<li>' . htmlspecialchars($field) . '</li>';
-  //   }
-  //   echo '</ul>';
-  // }
-
-
-  mysqli_close($con);
-
-  ?>
-</div>
-
-
-<?php include 'includes/footer.php'; ?>
+?>
