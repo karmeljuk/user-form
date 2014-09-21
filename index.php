@@ -8,7 +8,7 @@
      </div>
 
      <form enctype="multipart/form-data" action="form.php" class="form"
-     method="post" novalidate="">
+     method="post" novalidate="" onsubmit="return checkSize(2097152)">
 
           <div id="field5-container" class="field">
                <label for="field5">
@@ -63,7 +63,7 @@
                <label for="field13">
                     Photo
                </label>
-               <div class="uploader" id="uploader">
+               <div class="uploader">
                  <input type="file" accept="image/*" id="field13" name="photo">
                  <input type="hidden" name="max_file_size" value="100000" />
                </div>

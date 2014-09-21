@@ -40,7 +40,5 @@ $(document).ready(function()
         return false;
     });
 
-    var validator = $('.form').data('validator');
-
 
 });
