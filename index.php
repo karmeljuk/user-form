@@ -1,7 +1,5 @@
 <?php include 'includes/header.php'; ?>
 
-<div class="form-container">
-
      <div class="title field">
           <h2>User Form</h2>
           <h3>Please fill out the form. Fields with * are required</h3>
@@ -80,7 +78,7 @@
                <input value="Submit" type="submit">
           </div>
      </form>
-</div>
+
 
 <?php include 'includes/footer.php'; ?>
 
