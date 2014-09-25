@@ -13,7 +13,7 @@
 
     mysql_close();
 
-    include 'includes/view.html';
+    include 'includes/uk/view.html';
 
     include 'includes/footer.php';
 

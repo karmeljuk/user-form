@@ -174,8 +174,6 @@ class ProcessForm
             //Tells you if its all ok
             echo "The file ". basename( $_FILES['photo']['name']). " has been uploaded, and your information has been added to the directory";
 
-            // To redirect form on a particular page
-            header("Location:result.php");
         }
 
         else {
@@ -183,6 +181,9 @@ class ProcessForm
             //Gives and error if its not
             echo "Sorry, there was a problem uploading your file.";
         }
+
+        // To redirect form on a particular page
+        header("Location:result.php");
 
     }
 

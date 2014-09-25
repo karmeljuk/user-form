@@ -18,8 +18,7 @@
     // header("Location: $reloadLang/$page.php/");
     include_once 'includes/header.php';
     include_once 'includes/lang.php';
-    // include_once 'includes/uk/index.php');
-    include_once 'includes/'.$reloadLang.'/'.$page;
+    include_once 'includes/en/index.php';
     include_once 'includes/footer.php';
 
 

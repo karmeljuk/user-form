@@ -1,0 +1,78 @@
+<div class="title field">
+    <h2>Форма користувача</h2>
+    <h3>Будь ласка заповніть форму. Поля із зірочкою обов'язкові</h3>
+</div>
+
+<form enctype="multipart/form-data" action="form.php" class="form"
+method="post" novalidate="" onsubmit="return checkSize(2097152)">
+
+    <div id="field5-container" class="field">
+         <label for="field5">
+              Логін *
+         </label>
+         <input name="login" id="field5" required="required" type="text">
+    </div>
+
+    <div id="field6-container" class="field">
+         <label for="field6">
+              Ім'я
+         </label>
+         <input name="first_name" id="field6" type="text">
+    </div>
+
+    <div id="field7-container" class="field">
+         <label for="field7">
+              Прізвище
+         </label>
+         <input name="last_name" id="field7" type="text">
+    </div>
+
+    <div id="field8-container" class="field">
+         <label for="field8">
+              Електронна адреса *
+         </label>
+         <input name="email" id="field8" required="required" type="email">
+    </div>
+
+    <div id="field9-container" class="field">
+         <label for="field9">
+              Пароль *
+         </label>
+         <input name="password" id="field9" required="required" type="password">
+    </div>
+
+    <div id="field10-container" class="field">
+         <label for="field10">
+              Вебсайт
+         </label>
+         <input name="website" id="field10" type="url">
+    </div>
+
+    <div id="field11-container" class="field">
+         <label for="field11">
+              Google+
+         </label>
+         <input name="google_plus" id="field11" type="url">
+    </div>
+
+    <div class="field" id="field13-container">
+         <label for="field13">
+              Фотографія
+         </label>
+         <div class="uploader">
+           <input type="file" accept="image/*" id="field13" name="photo">
+           <input type="hidden" name="max_file_size" value="100000" />
+         </div>
+    </div>
+
+    <div id="field12-container" class="field">
+         <label for="field12">
+              Додаткова інофрмація
+         </label>
+         <textarea rows="5" class="field" name="information" id="field12"></textarea>
+    </div>
+
+    <div id="form-submit" class="field clearfix submit">
+         <input value="Submit" type="submit">
+    </div>
+</form>
