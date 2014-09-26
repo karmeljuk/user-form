@@ -16,5 +16,3 @@
     include 'includes/uk/view.html';
 
     include 'includes/footer.php';
-
-?>
